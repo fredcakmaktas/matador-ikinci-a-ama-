@@ -1,0 +1,26 @@
+const Colors = {
+  primary: '#262626',
+  secondary: '#8E8E8E',
+  accent: '#FF6B6B',
+  accentGradientStart: '#FF6B6B',
+  accentGradientMid: '#FF8E53',
+  accentGradientEnd: '#E040FB',
+  background: '#FFFFFF',
+  surfaceLight: '#FAFAFA',
+  border: '#EFEFEF',
+  borderDark: '#DBDBDB',
+  text: '#262626',
+  textSecondary: '#8E8E8E',
+  textLight: '#C7C7C7',
+  white: '#FFFFFF',
+  black: '#000000',
+  heart: '#ED4956',
+  online: '#44D62C',
+  messageBubble: '#EFEFEF',
+  messageBubbleSent: '#3897F0',
+  reelsBackground: '#000000',
+  tabActive: '#262626',
+  tabInactive: '#8E8E8E',
+};
+
+export default Colors;

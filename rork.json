@@ -1,0 +1,9 @@
+{
+  "apps": [
+    {
+      "name": "Pictura",
+      "path": "expo",
+      "framework": "react-native"
+    }
+  ]
+}
