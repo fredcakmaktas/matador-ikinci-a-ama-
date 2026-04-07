@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { Search, MapPin, User, X, TrendingUp } from 'lucide-react-native';
+import { Search, MapPin, User as UserIcon, X, TrendingUp } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 
@@ -150,7 +150,7 @@ export default function SearchScreen() {
           onPress={() => setActiveTab('users')}
           activeOpacity={0.7}
         >
-          <User
+          <UserIcon
             size={20}
             color={activeTab === 'users' ? Colors.black : Colors.gray}
           />
