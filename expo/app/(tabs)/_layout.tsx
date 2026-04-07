@@ -1,5 +1,5 @@
 import { Tabs, useRouter } from 'expo-router';
-import { Home, Heart, MessageCircle, User, Search, PlusSquare } from 'lucide-react-native';
+import { Home, Heart, MessageCircle, User, PlusSquare } from 'lucide-react-native';
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import * as Haptics from 'expo-haptics';
@@ -47,10 +47,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="notifications"
         options={{
-          title: 'Keşfet',
-          tabBarIcon: ({ color, size }) => <Search size={size} color={color} />,
+          title: 'Bildirimler',
+          tabBarIcon: ({ color, size }) => <Heart size={size} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -58,13 +58,6 @@ export default function TabLayout() {
         options={{
           title: '',
           tabBarButton: () => <AddButton />,
-        }}
-      />
-      <Tabs.Screen
-        name="notifications"
-        options={{
-          title: 'Bildirimler',
-          tabBarIcon: ({ color, size }) => <Heart size={size} color={color} />,
         }}
       />
       <Tabs.Screen
