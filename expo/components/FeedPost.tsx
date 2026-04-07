@@ -24,6 +24,9 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 interface FeedPostProps {
   post: Post;
+  showFollowButton?: boolean;
+  isFollowing?: boolean;
+  onFollowPress?: () => void;
 }
 
 function formatCount(count: number): string {
@@ -43,7 +46,12 @@ function timeAgo(timestamp: number): string {
   return `${days}d ago`;
 }
 
-export default React.memo(function FeedPost({ post }: FeedPostProps) {
+export default React.memo(function FeedPost({
+  post,
+  showFollowButton = false,
+  isFollowing = false,
+  onFollowPress,
+}: FeedPostProps) {
   const [isLiked, setIsLiked] = useState(post.isLiked);
   const [likesCount, setLikesCount] = useState(post.likesCount);
   const [isBookmarked, setIsBookmarked] = useState(post.isBookmarked);
@@ -119,6 +127,17 @@ export default React.memo(function FeedPost({ post }: FeedPostProps) {
                   <Text style={styles.verifiedText}>✓</Text>
                 </View>
               )}
+              {showFollowButton && (
+                <TouchableOpacity
+                  style={[styles.followBtnSmall, isFollowing && styles.followingBtnSmall]}
+                  onPress={onFollowPress}
+                  activeOpacity={0.7}
+                >
+                  <Text style={[styles.followBtnTextSmall, isFollowing && styles.followingBtnTextSmall]}>
+                    {isFollowing ? 'Takip Ediliyor' : 'Takip Et'}
+                  </Text>
+                </TouchableOpacity>
+              )}
             </View>
             {post.location && (
               <Text style={styles.location}>{post.location}</Text>
@@ -187,7 +206,7 @@ export default React.memo(function FeedPost({ post }: FeedPostProps) {
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.likesCount}>{formatCount(likesCount)} likes</Text>
+        <Text style={styles.likesCount}>{formatCount(likesCount)} beğenme</Text>
         <Text style={styles.caption}>
           <Text style={styles.captionUsername}>{post.user.username} </Text>
           {post.caption}
@@ -195,7 +214,7 @@ export default React.memo(function FeedPost({ post }: FeedPostProps) {
         {post.commentsCount > 0 && (
           <TouchableOpacity activeOpacity={0.7}>
             <Text style={styles.viewComments}>
-              View all {post.commentsCount} comments
+              Tüm {post.commentsCount} yorumu gör
             </Text>
           </TouchableOpacity>
         )}
@@ -242,18 +261,38 @@ const styles = StyleSheet.create({
   usernameRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: 6,
   },
   username: {
     fontSize: 14,
     fontWeight: '600' as const,
     color: Colors.text,
   },
+  followBtnSmall: {
+    backgroundColor: Colors.verified,
+    borderRadius: 4,
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    marginLeft: 4,
+  },
+  followingBtnSmall: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: Colors.borderDark,
+  },
+  followBtnTextSmall: {
+    color: Colors.white,
+    fontSize: 11,
+    fontWeight: '600' as const,
+  },
+  followingBtnTextSmall: {
+    color: Colors.text,
+  },
   verifiedBadge: {
     width: 14,
     height: 14,
     borderRadius: 7,
-    backgroundColor: '#3897F0',
+    backgroundColor: Colors.verified,
     alignItems: 'center',
     justifyContent: 'center',
   },
