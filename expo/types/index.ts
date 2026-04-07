@@ -26,6 +26,19 @@ export interface Comment {
   likesCount: number;
 }
 
+export interface Tag {
+  id: string;
+  username: string;
+  position?: { x: number; y: number };
+}
+
+export interface Location {
+  id: string;
+  name: string;
+  address?: string;
+  imageUrl?: string;
+}
+
 export interface Post {
   id: string;
   user: User;
@@ -38,17 +51,21 @@ export interface Post {
   isBookmarked: boolean;
   timestamp: number;
   location?: string;
+  tags?: Tag[];
 }
 
 export interface Reel {
   id: string;
   user: User;
   thumbnailUrl: string;
+  videoUrl?: string;
   caption: string;
   likesCount: number;
   commentsCount: number;
   isLiked: boolean;
   musicName?: string;
+  tags?: Tag[];
+  location?: string;
 }
 
 export interface Chat {

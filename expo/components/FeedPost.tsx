@@ -211,6 +211,15 @@ export default React.memo(function FeedPost({
           <Text style={styles.captionUsername}>{post.user.username} </Text>
           {post.caption}
         </Text>
+        {post.tags && post.tags.length > 0 && (
+          <View style={styles.tagsRow}>
+            {post.tags.map((tag, index) => (
+              <TouchableOpacity key={tag.id || index} activeOpacity={0.7}>
+                <Text style={styles.tagText}>@{tag.username}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
         {post.commentsCount > 0 && (
           <TouchableOpacity activeOpacity={0.7}>
             <Text style={styles.viewComments}>
@@ -351,6 +360,18 @@ const styles = StyleSheet.create({
     color: Colors.text,
     lineHeight: 20,
     marginBottom: 4,
+  },
+  tagsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginTop: 4,
+    marginBottom: 4,
+  },
+  tagText: {
+    fontSize: 14,
+    color: Colors.verified,
+    fontWeight: '500' as const,
   },
   captionUsername: {
     fontWeight: '600' as const,
